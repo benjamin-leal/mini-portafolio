@@ -1,16 +1,86 @@
-# React + Vite
+# Mini Portafolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio web personal de una sola página (SPA) hecho con React y React Router para la
+Evaluación N°3 de Desarrollo de Frontend.
 
-Currently, two official plugins are available:
+**Autor:** Benjamin Leal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Descripción
 
-## React Compiler
+Portafolio con cinco páginas: Inicio, Sobre mí, Habilidades, Proyectos y Contacto.
+Todas comparten un header con navegación y un footer con el nombre y el año.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías
 
-## Expanding the ESLint configuration
+- React
+- React Router (`react-router-dom`)
+- Vite
+- CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Cómo ejecutar el proyecto
+
+Requisito: tener [Node.js](https://nodejs.org) instalado.
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/benjamin-leal/mini-portafolio.git
+
+# 2. Entrar a la carpeta
+cd mini-portafolio
+
+# 3. Instalar las dependencias
+npm install
+
+# 4. Iniciar el servidor de desarrollo
+npm run dev
+```
+
+Luego abre en el navegador la dirección que muestra la terminal (normalmente
+`http://localhost:5173`).
+
+## Páginas y rutas
+
+| Página | Ruta |
+|---|---|
+| Inicio | `/` |
+| Sobre mí | `/sobremi` |
+| Habilidades | `/habilidades` |
+| Proyectos | `/proyectos` |
+| Contacto | `/contacto` |
+
+## Estructura del proyecto
+
+```
+src/
+├── components/
+│   ├── Header.jsx              # Menú de navegación con NavLink
+│   ├── Footer.jsx              # Nombre y año (recibe el nombre por props)
+│   ├── Layout.jsx              # Header + Outlet + Footer
+│   ├── TarjetaProyecto.jsx     # Tarjeta reutilizable (recibe datos por props)
+│   └── FormularioContacto.jsx  # Formulario con useState y validación
+├── pages/
+│   ├── Inicio.jsx
+│   ├── SobreMi.jsx
+│   ├── Habilidades.jsx
+│   ├── Proyectos.jsx
+│   └── Contacto.jsx
+├── assets/                     # Imágenes
+├── App.jsx                     # Definición de rutas
+├── main.jsx                    # Punto de entrada y BrowserRouter
+└── index.css                   # Estilos
+```
+
+## Funcionamiento
+
+- **Rutas anidadas:** `App.jsx` define una ruta padre con el `Layout` y cinco rutas
+  hijas. Cada página se muestra en el `Outlet` del `Layout`.
+- **Props:** `Footer` recibe el nombre y `TarjetaProyecto` recibe título, descripción,
+  enlace e imagen.
+- **Listas con `.map()`:** las páginas Habilidades y Proyectos recorren arreglos de datos.
+- **Formulario de contacto:** guarda los campos con `useState`, valida que no estén
+  vacíos y que el correo tenga un formato básico (`@` y `.`), y muestra un mensaje de
+  confirmación al enviar correctamente. No envía datos a un servidor.
+
+## Uso de IA
+
+El detalle del uso de herramientas de IA está declarado en [`uso_ia.md`](./uso_ia.md).
